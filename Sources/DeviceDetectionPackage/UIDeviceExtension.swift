@@ -108,8 +108,10 @@ public extension UIDevice
     var type: Model {
         var systemInfo = utsname()
         uname(&systemInfo)
-        let modelCode = withUnsafePointer(to: &systemInfo.machine) {
-            $0.withMemoryRebound(to: CChar.self, capacity: 1) {
+        let modelCode = withUnsafePointer(to: &systemInfo.machine)
+        {
+            $0.withMemoryRebound(to: CChar.self, capacity: 1)
+            {
                 ptr in String.init(validatingUTF8: ptr)
                 
             }
@@ -286,7 +288,36 @@ public extension UIDevice
         return Model.unrecognized
     }
     
-    
+    var bigDevice: Bool
+    {
+        get
+        {
+            switch UIDevice().type
+            {
+            case .iPhoneX:
+                fallthrough
+            case .iPhoneXS:
+                fallthrough
+            case .iPhoneXR:
+                fallthrough
+            case .iPhone11:
+                fallthrough
+            case .iPhone11Pro:
+                fallthrough
+            case .iPhone11ProMax:
+                fallthrough
+            case .iPhone12:
+                fallthrough
+            case .iPhone12Pro:
+                fallthrough
+            case .iPhone12ProMax:
+                return true
+
+            default:
+                return false
+            }
+        }
+    }
 
    
     var smallDevice : Bool
