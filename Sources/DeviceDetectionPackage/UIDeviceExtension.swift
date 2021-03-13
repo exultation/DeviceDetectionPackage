@@ -27,7 +27,7 @@ public enum Model : String {
          iPad2              = "iPad 2",
          iPad3              = "iPad 3",
          iPad4              = "iPad 4",
-         iPadAir1            = "iPad Air ",
+         iPadAir1           = "iPad Air ",
          iPadAir2           = "iPad Air 2",
          iPadAir3           = "iPad Air 3",
          iPadAir4           = "iPad Air 4",
@@ -37,7 +37,7 @@ public enum Model : String {
          iPad8              = "iPad 8", //iPad 2020
 
          //iPad Mini
-         iPadMini1         = "iPad Mini",
+         iPadMini1          = "iPad Mini",
          iPadMini2          = "iPad Mini 2",
          iPadMini3          = "iPad Mini 3",
          iPadMini4          = "iPad Mini 4",
@@ -105,7 +105,8 @@ public enum Model : String {
 
 public extension UIDevice
 {
-    var type: Model {
+    var type: Model
+    {
         var systemInfo = utsname()
         uname(&systemInfo)
         let modelCode = withUnsafePointer(to: &systemInfo.machine)
@@ -275,10 +276,14 @@ public extension UIDevice
                     "AppleTV6,2" : .AppleTV_4K
         ]
         
-        if let model = modelMap[String.init(validatingUTF8: modelCode!)!] {
-            if model == .simulator {
-                if let simModelCode = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-                    if let simModel = modelMap[String.init(validatingUTF8: simModelCode)!] {
+        if let model = modelMap[String.init(validatingUTF8: modelCode!)!]
+        {
+            if model == .simulator
+            {
+                if let simModelCode = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"]
+                {
+                    if let simModel = modelMap[String.init(validatingUTF8: simModelCode)!]
+                    {
                         return simModel
                     }
                 }
@@ -288,11 +293,29 @@ public extension UIDevice
         return Model.unrecognized
     }
     
+    var iPad : Bool
+    {
+        get
+        {
+          
+            
+            if self.type.rawValue.lowercased().starts(with: "ipad")
+            {
+                return true
+            }
+            else
+            {
+                return false
+
+            }
+        }
+    }
+    
     var bigDevice: Bool
     {
         get
         {
-            switch UIDevice().type
+            switch self.type
             {
             case .iPhoneX:
                 fallthrough
