@@ -311,6 +311,42 @@ public extension UIDevice
         }
     }
     
+    var iPhone : Bool
+    {
+        get
+        {
+          
+            
+            if self.type.rawValue.lowercased().starts(with: "iphone")
+            {
+                return true
+            }
+            else
+            {
+                return false
+
+            }
+        }
+    }
+
+    var iPod : Bool
+    {
+        get
+        {
+          
+            
+            if self.type.rawValue.lowercased().starts(with: "ipod")
+            {
+                return true
+            }
+            else
+            {
+                return false
+
+            }
+        }
+    }
+    
     var bigDevice: Bool
     {
         get
@@ -342,12 +378,39 @@ public extension UIDevice
         }
     }
 
+    var midDevice : Bool
+    {
+        get
+        {
+            switch self.type
+            {
+            case .iPhone6:
+                fallthrough
+            case .iPhone6S:
+                fallthrough
+            case .iPhone6SPlus:
+                fallthrough
+            case .iPhone7:
+                fallthrough
+            case .iPhone7:
+                fallthrough
+            case .iPhone7Plus:
+                fallthrough
+            case .iPhone8:
+                fallthrough
+            case .iPhone8Plus:
+                return true
+            default:
+                return false
+            }
+        }
+    }
    
     var smallDevice : Bool
     {
         get
         {
-            switch UIDevice().type
+            switch self.type
             {
             case .iPhone4:
                 fallthrough
@@ -355,9 +418,6 @@ public extension UIDevice
                 fallthrough
             case .iPhone5S:
                 fallthrough
-            case .iPhone6:
-                fallthrough
-            case .iPhone6S:
                 fallthrough
             case .iPhoneSE:
                 fallthrough
