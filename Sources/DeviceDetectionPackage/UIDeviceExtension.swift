@@ -353,6 +353,8 @@ public extension UIDevice
         {
             switch self.type
             {
+            case .iPhone6Plus:
+                fallthrough
             case .iPhone6SPlus:
                 fallthrough
             case .iPhone7Plus:
