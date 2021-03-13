@@ -353,6 +353,10 @@ public extension UIDevice
         {
             switch self.type
             {
+            case .iPhone6SPlus:
+                fallthrough
+            case .iPhone7Plus:
+                fallthrough
             case .iPhoneX:
                 fallthrough
             case .iPhoneXS:
@@ -368,6 +372,8 @@ public extension UIDevice
             case .iPhone12:
                 fallthrough
             case .iPhone12Pro:
+                fallthrough
+            case .iPhone8Plus:
                 fallthrough
             case .iPhone12ProMax:
                 return true
@@ -388,17 +394,12 @@ public extension UIDevice
                 fallthrough
             case .iPhone6S:
                 fallthrough
-            case .iPhone6SPlus:
-                fallthrough
             case .iPhone7:
                 fallthrough
             case .iPhone7:
-                fallthrough
-            case .iPhone7Plus:
                 fallthrough
             case .iPhone8:
-                fallthrough
-            case .iPhone8Plus:
+           
                 return true
             default:
                 return false
