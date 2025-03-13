@@ -31,10 +31,15 @@ public enum Model : String {
          iPadAir2           = "iPad Air 2",
          iPadAir3           = "iPad Air 3",
          iPadAir4           = "iPad Air 4",
+         iPadAir5           = "iPad Air 5",
+
          iPad5              = "iPad 5", //iPad 2017
          iPad6              = "iPad 6", //iPad 2018
          iPad7              = "iPad 7", //iPad 2019
          iPad8              = "iPad 8", //iPad 2020
+         iPad9              = "iPad 9", //iPad 2021
+         iPad10             = "iPad 10",//iPad 2022
+         
 
          //iPad Mini
          iPadMini1          = "iPad Mini",
@@ -80,6 +85,23 @@ public enum Model : String {
          iPhone12           = "iPhone 12",
          iPhone12Pro        = "iPhone 12 Pro",
          iPhone12ProMax     = "iPhone 12 Pro Max",
+         iPhone13Mini       = "iPhone 13 mini",
+         iPhone13           = "iPhone 13",
+         iPhone13Pro        = "iPhone 13 Pro",
+         iPhone13ProMax     = "iPhone 13 Pro Max",
+         iPhone14           = "iPhone 14",
+         iPhone14Plus       = "iPhone 14 Plus",
+         iPhone14Pro        = "iPhone 14 Pro",
+         iPhone14ProMax     = "iPhone 14 Pro Max",
+         iPhone15           = "iPhone 15",
+         iPhone15Plus       = "iPhone 15 Plus",
+         iPhone15Pro        = "iPhone 15 Pro",
+         iPhone15ProMax     = "iPhone 15 Pro Max",
+         iPhone16           = "iPhone 16",
+         iPhone16Plus       = "iPhone 16 Plus",
+         iPhone16Pro        = "iPhone 16 Pro",
+         iPhone16ProMax     = "iPhone 16 Pro Max",
+         iPhone16e          = "iPhone 16e",
 
          // Apple Watch
          AppleWatch1         = "Apple Watch 1gen",
@@ -107,6 +129,7 @@ public extension UIDevice
 {
     var type: Model
     {
+        
         var systemInfo = utsname()
         uname(&systemInfo)
         let modelCode = withUnsafePointer(to: &systemInfo.machine)
@@ -121,6 +144,7 @@ public extension UIDevice
             //Simulator
                     "i386"      : .simulator,
                     "x86_64"    : .simulator,
+                    "arm64"     : .simulator,
 
                     //iPod
                     "iPod1,1"   : .iPod1,
@@ -150,6 +174,10 @@ public extension UIDevice
                     "iPad7,12"  : .iPad7,
                     "iPad11,6"  : .iPad8, //iPad 2020
                     "iPad11,7"  : .iPad8,
+                    "iPad12,1"  : .iPad9,
+                    "iPad12,2"  : .iPad9,
+                    "iPad13,19"  : .iPad10,
+                    "iPad13,20"  : .iPad10,
 
                     //iPad Mini
                     "iPad2,5"   : .iPadMini1,
@@ -198,6 +226,9 @@ public extension UIDevice
                     "iPad11,4"  : .iPadAir3,
                     "iPad13,1"  : .iPadAir4,
                     "iPad13,2"  : .iPadAir4,
+                    "iPad13,15" : .iPadAir5,
+                    "iPad13,16" : .iPadAir5,
+
                     
 
                     //iPhone
@@ -234,10 +265,34 @@ public extension UIDevice
                     "iPhone12,3" : .iPhone11Pro,
                     "iPhone12,5" : .iPhone11ProMax,
                     "iPhone12,8" : .iPhoneSE2,
+
                     "iPhone13,1" : .iPhone12Mini,
                     "iPhone13,2" : .iPhone12,
                     "iPhone13,3" : .iPhone12Pro,
                     "iPhone13,4" : .iPhone12ProMax,
+
+                    "iPhone14,4":  .iPhone13Mini,
+                    "iPhone14,5":  .iPhone13,
+                    "iPhone14,2":  .iPhone13Pro,
+                    "iPhone14,3":  .iPhone13ProMax,
+
+                    "iPhone14,7":  .iPhone14,
+                    "iPhone14,8":  .iPhone14Plus,
+                    "iPhone15,2":  .iPhone14Pro,
+                    "iPhone15,3":  .iPhone14ProMax,
+
+                    "iPhone15,4":  .iPhone15,
+                    "iPhone15,5":  .iPhone15Plus,
+                    "iPhone16,1":  .iPhone15Pro,
+                    "iPhone16,2":  .iPhone15ProMax,
+
+                    "iPhone17,3":  .iPhone16,
+                    "iPhone17,4":  .iPhone16Plus,
+                    "iPhone17,1":  .iPhone16Pro,
+                    "iPhone17,2":  .iPhone16ProMax,
+                    "iPhone17,5":  .iPhone16e,
+
+
                     
                     // Apple Watch
                     "Watch1,1" : .AppleWatch1,
@@ -298,6 +353,7 @@ public extension UIDevice
         get
         {
           
+            let st = self.type.rawValue.lowercased()
             
             if self.type.rawValue.lowercased().starts(with: "ipad")
             {
@@ -333,8 +389,6 @@ public extension UIDevice
     {
         get
         {
-          
-            
             if self.type.rawValue.lowercased().starts(with: "ipod")
             {
                 return true
@@ -343,6 +397,39 @@ public extension UIDevice
             {
                 return false
 
+            }
+        }
+    }
+    
+    var maxDevice: Bool
+    {
+        get
+        {
+            switch self.type
+            {
+
+            case .iPhone16Plus:
+                return true
+            case .iPhone16ProMax:
+                return true
+            case .iPhone15Plus:
+                return true
+            case .iPhone15ProMax:
+                return true
+            case .iPhone14Plus:
+                return true
+            case .iPhone14ProMax:
+                return true
+            case .iPhone13ProMax:
+                return true
+            case .iPhone12ProMax:
+                return true
+            case .iPhone11ProMax:
+                return true
+            case .iPhoneXSMax:
+                return true
+            default:
+                return false
             }
         }
     }
@@ -369,16 +456,39 @@ public extension UIDevice
                 fallthrough
             case .iPhone11Pro:
                 fallthrough
-            case .iPhone11ProMax:
-                fallthrough
+
             case .iPhone12:
                 fallthrough
             case .iPhone12Pro:
                 fallthrough
             case .iPhone8Plus:
                 fallthrough
-            case .iPhone12ProMax:
+
+            case .iPhone13:
                 return true
+            case .iPhone13Pro:
+                return true
+
+            case .iPhone13:
+                return true
+            case .iPhone14:
+                return true
+            case .iPhone14Pro:
+                return true
+
+
+            case .iPhone15:
+                return true
+            case .iPhone15Pro:
+                return true
+
+
+            case .iPhone16:
+                return true
+            case .iPhone16Pro:
+                return true
+
+
 
             default:
                 return false
@@ -401,7 +511,10 @@ public extension UIDevice
             case .iPhone7:
                 fallthrough
             case .iPhone8:
-           
+                fallthrough
+            case .iPhone13Mini:
+                return true
+            case .iPhone16e:
                 return true
             default:
                 return false
