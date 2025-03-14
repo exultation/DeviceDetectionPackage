@@ -102,6 +102,7 @@ public enum Model : String {
          iPhone16Pro        = "iPhone 16 Pro",
          iPhone16ProMax     = "iPhone 16 Pro Max",
          iPhone16e          = "iPhone 16e",
+         iPhoneSE3rdGeneration = "iPhone SE 3rd generation",
 
          // Apple Watch
          AppleWatch1         = "Apple Watch 1gen",
@@ -275,6 +276,7 @@ public extension UIDevice
                     "iPhone14,5":  .iPhone13,
                     "iPhone14,2":  .iPhone13Pro,
                     "iPhone14,3":  .iPhone13ProMax,
+                    "iPhone14,6" : .iPhoneSE3rdGeneration,
 
                     "iPhone14,7":  .iPhone14,
                     "iPhone14,8":  .iPhone14Plus,
@@ -537,11 +539,14 @@ public extension UIDevice
                 fallthrough
             case .iPhoneSE:
                 fallthrough
-            case .iPhone12Mini:
+            case .iPhoneSE:
+                fallthrough
+            case .iPhoneSE3rdGeneration:
                 fallthrough
             case .iPhone4S:
                 return true
-
+                
+                
             default:
                 return false
             }
