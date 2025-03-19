@@ -539,7 +539,7 @@ public extension UIDevice
                 fallthrough
             case .iPhoneSE:
                 fallthrough
-            case .iPhoneSE:
+            case .iPhoneSE2:
                 fallthrough
             case .iPhoneSE3rdGeneration:
                 fallthrough
